@@ -23,6 +23,7 @@ The goal is to identify the language of each token as it appears in the text, ba
 | `EN` | English | Token in Latin script belonging to English |
 | `AR-LAT` | Arabizi | Token in Latin script that represents spoken Arabic (transliteration) |
 | `MIX` | Mixed | Single token with morphemes from two languages (intra-word switching) |
+| `OL` | Other Language | Any language other than Arabic and English (French, etc.) |
 | `OTHER` | Other | Punctuation, digits, URLs, hashtags, emoticons, usernames |
 
 ---
