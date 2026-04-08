@@ -4,3 +4,4 @@ data/arabizi-wanlp/*.zip
 data/arabizi-wanlp/arabizi_tweet_ids_auto.csv
 data/arabizi-wanlp/sen_annotated.csv
 data/arabizi-wanlp/words_annotated.csv
+data/arabizi-wanlp-scripts/
