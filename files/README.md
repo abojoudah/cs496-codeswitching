@@ -48,14 +48,6 @@ bash data/arabic-english-cs/download.sh
 pip install pandas numpy scikit-learn matplotlib seaborn nltk
 ```
 
-## Baselines
-
-Four baselines are evaluated in Task 3:
-1. mBERT (fine-tuned)
-2. XLM-RoBERTa (fine-tuned)
-3. GPT-4o (zero-shot prompting)
-4. LLaMA-3 (QLoRA fine-tuned)
-
 ## Citation
 
 ```
