@@ -138,7 +138,7 @@ If a token could be either English or Arabizi, look at:
 
 ## 5. Annotation Process for IAA
 
-1. All three annotators receive the **same sample of 250 sentences** from the combined dataset.
+1. All three annotators receive the **same sample of 250 sentences** from the Arabizi dataset.
 2. Each annotator works **independently** — do not discuss labels during annotation.
 3. Use the provided `annotation_sample.csv` file and add your labels in your assigned column (`annotator_1`, `annotator_2`, `annotator_3`).
 4. After all three are done, run `iaa_compute.py` to compute Fleiss' Kappa.
