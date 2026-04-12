@@ -1,6 +1,6 @@
 # CS496 — Code-Switching Handling in Arabic-English Tasks
 
-This repository contains datasets, annotation resources, and analysis scripts for a thesis project investigating how large language models handle Arabic-English code-switching, including Arabizi (Arabic written in Latin script).
+This repository contains datasets, annotation resources, and analysis scripts for a project investigating how large language models handle Arabic-English code-switching, including Arabizi (Arabic written in Latin script).
 
 ## Research Questions
 
