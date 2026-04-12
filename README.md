@@ -23,6 +23,8 @@ cs496-codeswitching/
 │   ├── guidelines.md           # Annotation guidelines + label definitions
 │   ├── annotation_sample.csv   # 250-sentence IAA sample
 │   └── iaa_compute.py          # Fleiss Kappa computation script
+│   ├── annotation_sample_result.csv # 250-sentence IAA sample
+│   ├── create_sample.py   # 250-sentence IAA sample
 ├── analysis/
 │   └── descriptive_stats.py    # Descriptive statistics + figures
 └── scripts/
