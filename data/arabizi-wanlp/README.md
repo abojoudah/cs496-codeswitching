@@ -37,21 +37,41 @@ Requires `git`. Clones the original repository and copies only the data files in
 | `token` | string | Word in original script |
 | `categ` | int | Original language ID category (see mapping below) |
 
-## Label Mapping
+## Original Label Definitions
 
-Original dataset uses numeric categories. We map them to our unified 6-label scheme:
+The numeric categories are defined in the original authors' source code (`main.py`, line 21):
 
-| categ | Our Label | Meaning | Example |
+```python
+categ_names = ['Arabizi', 'English', 'French ', 'Arabic ','Shared', 'Other  ']
+```
+
+| categ | Original Name | Description |
+|---|---|---|
+| 0 | Arabizi | Arabic words written in Latin script |
+| 1 | English | English tokens |
+| 2 | French | French tokens |
+| 3 | Arabic | Arabic tokens in Arabic script |
+| 4 | Shared | Cross-linguistic words of Arabic origin in Latin script (e.g. Mashallah, allah, inshallah) |
+| 5 | Other | Punctuation, digits, symbols, URLs |
+
+## Label Mapping to Our Unified Scheme
+
+We map the original six numeric categories to our unified 6-label scheme:
+
+| categ | Original Name | Our Label | Rationale |
 |---|---|---|---|
-| 1 | EN | English in Latin script | hello, working |
-| 2 | AR | Arabic in Arabic script | مرحبا، كيف |
-| 3 | AR-LAT | Arabizi — Arabic in Latin script | marhaba, 7abibi, yalla |
-| 4 | OL | Other language (mainly French) | Oui, vraiment, merci |
-| 5 | OTHER | Punctuation, digits, symbols, URLs | . , ! @ # |
+| 0 | Arabizi | AR-LAT | Arabic words in Latin script |
+| 1 | English | EN | Direct match |
+| 2 | French | OL | Other language |
+| 3 | Arabic | AR | Direct match |
+| 4 | Shared | AR-LAT | Arabic-origin words in Latin script (e.g. Mashallah, allah) |
+| 5 | Other | OTHER | Direct match |
+
+**Note on Shared tokens (categ 4):** These 1,402 tokens are words of Arabic origin written in Latin script that are widely used across languages. Since they are Arabic words rendered in Latin script, we map them to AR-LAT alongside the core Arabizi tokens (categ 0).
 
 ## Dataset Statistics
 
-All numbers verified against the actual data file using `analysis/descriptive_stats.py`.
+All numbers verified against the actual data file.
 
 ### Overall
 
@@ -64,15 +84,26 @@ All numbers verified against the actual data file using `analysis/descriptive_st
 | Min tokens per sentence | 1 |
 | Code-switched sentences | 335 (13.0%) |
 
-### Label Distribution
+### Original Label Distribution (before mapping)
 
-| Label | Count | Percentage |
+| categ | Original Name | Count | Percentage |
+|---|---|---|---|
+| 1 | English | 16,564 | 55.6% |
+| 0 | Arabizi | 4,862 | 16.3% |
+| 5 | Other | 4,162 | 14.0% |
+| 3 | Arabic | 2,671 | 9.0% |
+| 4 | Shared | 1,402 | 4.7% |
+| 2 | French | 149 | 0.5% |
+
+### Mapped Label Distribution (after mapping)
+
+| Our Label | Count | Percentage |
 |---|---|---|
 | EN | 16,564 | 55.6% |
+| AR-LAT | 6,264 | 21.0% |
 | OTHER | 4,162 | 14.0% |
-| AR-LAT | 2,671 | 9.0% |
-| OL | 1,402 | 4.7% |
-| AR | 149 | 0.5% |
+| AR | 2,671 | 9.0% |
+| OL | 149 | 0.5% |
 
 ### Source Breakdown
 
@@ -84,11 +115,12 @@ All numbers verified against the actual data file using `analysis/descriptive_st
 ## Observed Biases
 
 - **English-dominant:** 55.6% of tokens are English — most posts switch heavily into English
-- **Low Arabic-script content:** only 0.5% AR tokens — users prefer Arabizi over Arabic script
+- **Low Arabic-script content:** only 9.0% AR tokens in Arabic script — users prefer Arabizi over Arabic script
 - **Sparse code-switching:** only 13% of sentences contain actual code-switching
-- **French presence:** 4.7% OL tokens — mainly North African users (Algerian, Moroccan, Tunisian)
+- **French presence:** 0.5% OL tokens (French) — mainly from North African users (Algerian, Moroccan, Tunisian)
+- **Shared token ambiguity:** 4.7% of tokens are cross-linguistic words (Mashallah, allah, etc.) mapped to AR-LAT, which may introduce ambiguity at the boundary between Arabizi and language-neutral words
 - **Informal register only:** all data from social media — no formal or written Arabic
-- **Label noise:** original annotations contain inconsistencies (e.g. Arabic-script tokens labeled as AR-LAT, French tokens labeled as AR) — this motivated our independent re-annotation
+- **Label noise:** original annotations contain inconsistencies (e.g. Arabic-script tokens labeled as Arabizi, French tokens labeled as Arabic) — this motivated our independent re-annotation
 
 ## Relevance to This Project
 
