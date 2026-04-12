@@ -29,7 +29,6 @@ COLORS = {
     "AR-LAT": "#D85A30",
     "OL": "#D4537E",
     "OTHER": "#888780",
-    "MIX": "#BA7517",
     "NE.AR": "#3C3489",
     "NE.EN": "#0F6E56",
     "AMBIG": "#BA7517",
@@ -66,8 +65,11 @@ def analyze_arabizi():
         mapped = CATEG_MAP.get(categ, "???")
         print(f"    categ {categ} ({name:8s}) -> {mapped:7s}: {count:6,}  ({100*count/total_tokens:.1f}%)")
 
-    cs_sents = df[df["label"].isin(["AR","AR-LAT"])]["sen_id"].nunique()
+    # Code-switched sentences: sentences where Arabizi (categ 0 or 4) and English (categ 1) co-occur
+    sent_categs = df.groupby("sen_id")["categ"].apply(set)
+    cs_sents = sum(1 for categs in sent_categs if (0 in categs or 4 in categs) and 1 in categs)
     print(f"\n  Code-switched sentences: {cs_sents:,} / {total_sents:,} ({100*cs_sents/total_sents:.1f}%)")
+
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
     dist.plot(kind="bar", ax=axes[0], color=[COLORS.get(l,"#888780") for l in dist.index], edgecolor="none")
     axes[0].set_title("Label distribution — Arabizi WANLP 2022", fontsize=11)
@@ -144,7 +146,7 @@ def combined_summary(arab_tok, arab_sen, arcs_tok, arcs_sen):
     print(f"{'TOTAL':<30} {arab_sen+arcs_sen:>10,} {arab_tok+arcs_tok:>10,}")
     print("\n  Observed biases:")
     print("  - Arabizi dataset is Reddit/Twitter-dominant: informal register only")
-    print("  - Arabic-English CS Corpus skews heavily toward AR (62.9%) vs EN (22.5%)")
+    print("  - Arabic-English CS Corpus skews heavily toward AR (63.9%) vs EN (23.4%)")
     print("  - Shared tokens (4.7%) mapped to AR-LAT may introduce boundary ambiguity")
 
 if __name__ == "__main__":
