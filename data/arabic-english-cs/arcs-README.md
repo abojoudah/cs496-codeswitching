@@ -42,7 +42,10 @@ The corpus is a plain-text file in CoNLL-style format — one token per line, bl
 | `AMBIG` | Ambiguous token | — |
 | `LANG3` | Third language token | — |
 
-**Note:** Although `MIX` is defined in the original label set, no tokens in the corpus are actually labeled as MIX. Intra-word code-switched tokens (e.g. bi-working, el-meeting) remain labeled under their dominant language (typically EN) in the source data.
+**Note:** No tokens in the corpus are labeled as MIX. The original annotators 
+handled intra-word code-switching by splitting tokens into their component parts 
+(e.g. "elmix" is split into "el" as AR and "mix" as EN) rather than using a 
+single MIX tag.
 
 ## Label Mapping to Our Unified Scheme
 
