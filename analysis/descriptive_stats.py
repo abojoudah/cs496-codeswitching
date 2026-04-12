@@ -65,9 +65,9 @@ def analyze_arabizi():
         mapped = CATEG_MAP.get(categ, "???")
         print(f"    categ {categ} ({name:8s}) -> {mapped:7s}: {count:6,}  ({100*count/total_tokens:.1f}%)")
 
-    # Code-switched sentences: sentences where Arabizi (categ 0 or 4) and English (categ 1) co-occur
+    # Code-switched sentences: sentences where Arabizi (categ 0) and English (categ 1) co-occur
     sent_categs = df.groupby("sen_id")["categ"].apply(set)
-    cs_sents = sum(1 for categs in sent_categs if (0 in categs or 4 in categs) and 1 in categs)
+    cs_sents = sum(1 for categs in sent_categs if 0 in categs and 1 in categs)
     print(f"\n  Code-switched sentences: {cs_sents:,} / {total_sents:,} ({100*cs_sents/total_sents:.1f}%)")
 
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
