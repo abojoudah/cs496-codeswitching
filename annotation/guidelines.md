@@ -3,7 +3,7 @@
 **Project:** CS496 — Code-Switching Handling in Arabic-English Tasks  
 **Task:** Word-level Language Identification (LID) for Arabic-English code-switched text  
 **Version:** 1.1  
-**Annotators:** 3 (you + 2 teammates)
+**Annotators:** 3
 
 ---
 
