@@ -2,7 +2,7 @@
 
 **Project:** CS496 — Code-Switching Handling in Arabic-English Tasks  
 **Task:** Word-level Language Identification (LID) for Arabic-English code-switched text  
-**Version:** 1.0  
+**Version:** 1.1  
 **Annotators:** 3 (you + 2 teammates)
 
 ---
@@ -22,7 +22,6 @@ The goal is to identify the language of each token as it appears in the text, ba
 | `AR` | Arabic | Token in Arabic script belonging to Arabic (MSA or any dialect) |
 | `EN` | English | Token in Latin script belonging to English |
 | `AR-LAT` | Arabizi | Token in Latin script that represents spoken Arabic (transliteration) |
-| `MIX` | Mixed | Single token with morphemes from two languages (intra-word switching) |
 | `OL` | Other Language | Any language other than Arabic and English (French, etc.) |
 | `OTHER` | Other | Punctuation, digits, URLs, hashtags, emoticons, usernames |
 
@@ -64,17 +63,14 @@ A token written in the Latin script that represents an Arabic word or morpheme. 
 
 **Key distinction from EN:** If a word looks like it could be English but is used as an Arabic transliteration in context, label it AR-LAT. When in doubt, check if the word has an obvious Arabic counterpart.
 
-### MIX — Intra-word code-switching
-A single token that contains morphemes from two different languages fused together. This is the rarest category.
+### OL — Other Language
+Any token in a language other than Arabic or English, predominantly French in this dataset.
 
 | Token | Label | Reason |
 |---|---|---|
-| bi-working | MIX | Arabic prefix بـ (bi-) + English stem "working" |
-| ma-understand-sh | MIX | Arabic negation frame + English verb |
-| el-meeting | MIX | Arabic definite article ال (el-) + English noun |
-| 7abib-i | MIX | Arabizi stem + Arabic suffix if merged as one token |
-
-**Note:** Only label MIX if the mixing occurs **within a single token** (no space). If the Arabic and English parts are separate tokens, label each one individually.
+| Oui | OL | French word |
+| vraiment | OL | French word |
+| merci | OL | French word |
 
 ### OTHER — Non-linguistic tokens
 Punctuation, numbers, symbols, URLs, usernames, hashtags, emoticons.
@@ -94,7 +90,17 @@ Punctuation, numbers, symbols, URLs, usernames, hashtags, emoticons.
 
 ## 4. Edge Cases and Decision Rules
 
-### 4.1 Loanwords
+### 4.1 Intra-word code-switching
+Some tokens contain morphemes from two languages fused together (e.g. "bi-working", "el-meeting"). Since our label scheme does not include a separate mixed-token label, these tokens should be labeled based on their **dominant component**. In most cases this is EN, since the stem is English.
+
+| Token | Label | Reason |
+|---|---|---|
+| bi-working | EN | English stem "working" is the dominant component |
+| el-meeting | EN | English stem "meeting" is the dominant component |
+
+Annotating intra-word mixed tokens as a separate category is left for future work.
+
+### 4.2 Loanwords
 Words borrowed from English into Arabic and used as Arabic words (e.g. "mobile", "internet", "computer") should be labeled **AR** if written in Arabic script, or **EN** if written in Latin script — do not label them AR-LAT.
 
 | Token | Label | Reason |
@@ -103,7 +109,7 @@ Words borrowed from English into Arabic and used as Arabic words (e.g. "mobile",
 | mobile | EN | Same word but in Latin script, used as English |
 | internet | EN | Widely borrowed but used in English form |
 
-### 4.2 Named entities (people, places, brands)
+### 4.3 Named entities (people, places, brands)
 Label by script. Arabic-script names → AR. Latin-script names → EN.
 
 | Token | Label | Reason |
@@ -113,7 +119,7 @@ Label by script. Arabic-script names → AR. Latin-script names → EN.
 | Kuwait | EN | Place name in Latin script |
 | الكويت | AR | Same place in Arabic script |
 
-### 4.3 Ambiguous Arabizi vs. English
+### 4.4 Ambiguous Arabizi vs. English
 If a token could be either English or Arabizi, look at:
 1. Surrounding tokens: if the sentence is primarily Arabizi, prefer AR-LAT.
 2. Phonological plausibility: does it sound like an Arabic word when read?
@@ -124,7 +130,7 @@ If a token could be either English or Arabizi, look at:
 | ana | "ana mabsoot" | AR-LAT | أنا in Arabizi |
 | ana | "ana conda environment" | EN | English tech term |
 
-### 4.4 Repeated characters for emphasis
+### 4.5 Repeated characters for emphasis
 "hahahaha", "lolll", "wowwww" → **EN**  
 "hhhhhh" → **AR-LAT** (Arabic laughter marker ههههه written in Latin)
 
