@@ -15,8 +15,7 @@ import pandas as pd
 from itertools import combinations
 
 
-LABELS = ["AR", "EN", "AR-LAT", "MIX", "OTHER", "OL"]
-
+LABELS = ["AR", "EN", "AR-LAT", "OTHER", "OL"]
 
 def fleiss_kappa(matrix):
     """
