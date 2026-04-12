@@ -17,6 +17,15 @@ bash download.sh
 
 Requires `git`. Clones the original repository and copies only the data files into this folder. Raw files are excluded from GitHub by `.gitignore`.
 
+## Files
+
+| File | Size | Description |
+|---|---|---|
+| `words_annotated.csv` | 1.1 MB | Word-level language ID annotations — primary file |
+| `sen_annotated.csv` | 253 KB | Sentence-level annotations |
+| `arabizi-reddit_new.zip` | 13 MB | Raw Reddit posts in Arabizi |
+| `arabizi_tweet_ids_auto.csv` | 14 MB | Tweet IDs only (no raw text — Twitter ToS compliant) |
+
 ## Schema — words_annotated.csv
 
 | Column | Type | Description |
