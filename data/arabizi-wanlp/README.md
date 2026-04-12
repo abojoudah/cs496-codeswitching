@@ -116,7 +116,7 @@ All numbers verified against the actual data file.
 
 - **English-dominant:** 55.6% of tokens are English — most posts switch heavily into English
 - **Low Arabic-script content:** only 9.0% AR tokens in Arabic script — users prefer Arabizi over Arabic script
-- **Sparse code-switching:** only 13% of sentences contain actual code-switching
+- **Limited code-switching:** 21.8% of sentences contain actual code-switching between Arabizi and English
 - **French presence:** 0.5% OL tokens (French) — mainly from North African users (Algerian, Moroccan, Tunisian)
 - **Shared token ambiguity:** 4.7% of tokens are cross-linguistic words (Mashallah, allah, etc.) mapped to AR-LAT, which may introduce ambiguity at the boundary between Arabizi and language-neutral words
 - **Informal register only:** all data from social media — no formal or written Arabic
