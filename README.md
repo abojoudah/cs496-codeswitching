@@ -21,7 +21,7 @@ cs496-codeswitching/
 │       └── README.md           # Schema, fields, citation
 ├── annotation/
 │   ├── guidelines.md           # Annotation guidelines + label definitions
-│   ├── annotation_sample.csv   # 250-sentence IAA sample (to be added)
+│   ├── annotation_sample.csv   # 250-sentence IAA sample
 │   └── iaa_compute.py          # Fleiss Kappa computation script
 ├── analysis/
 │   └── descriptive_stats.py    # Descriptive statistics + figures
@@ -31,27 +31,41 @@ cs496-codeswitching/
 
 ## Datasets
 
-| Dataset | Source | Size | Task | Script |
-|---|---|---|---|---|
-| Arabizi (WANLP 2022) | GitHub: HaifaCLG/Arabizi | ~12K sentences | LID, code-switch detection | `data/arabizi-wanlp/download.sh` |
-| Arabic-English CS Corpus | Kaggle: islamkaloop | ~10K sentences | LID, code-switch detection | `data/arabic-english-cs/download.sh` |
+| Dataset | Source | Sentences | Tokens | Task | Script |
+|---|---|---|---|---|---|
+| Arabizi (WANLP 2022) | GitHub: HaifaCLG/Arabizi | 2,574 | 29,810 | LID, code-switch detection | `data/arabizi-wanlp/download.sh` |
+| Arabic-English CS Corpus | Kaggle: islamkaloop | 2,507 | 30,321 | LID, code-switch detection | `data/arabic-english-cs/download.sh` |
+| **Combined** | | **5,081** | **60,131** | | |
 
 **Important:** Raw dataset files are not committed to this repository. Run the download scripts to obtain them locally. This ensures compliance with source platform terms of service.
+
+## Unified Label Scheme
+
+Both datasets are mapped to a five-label annotation scheme:
+
+| Label | Description | Example |
+|---|---|---|
+| AR | Arabic in Arabic script | مرحبا، كيف |
+| EN | English in Latin script | hello, working |
+| AR-LAT | Arabizi: Arabic in Latin script | marhaba, 7abibi |
+| OTHER | Punctuation, digits, symbols | . , ! @ # |
+| OL | Other language (e.g. French) | Oui, vraiment |
+
+See each dataset's README for the full label mapping from original annotations.
 
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/cs496-codeswitching.git
+git clone https://github.com/abojoudah/cs496-codeswitching.git
 cd cs496-codeswitching
 bash data/arabizi-wanlp/download.sh
 bash data/arabic-english-cs/download.sh
 pip install pandas numpy scikit-learn matplotlib seaborn nltk
 ```
 
-
 ## Citation
 
-```
+```bibtex
 @inproceedings{shehadi-wintner-2022-identifying,
   title     = "Identifying Code-switching in {A}rabizi",
   author    = "Shehadi, Safaa and Wintner, Shuly",
