@@ -1,0 +1,64 @@
+You are an expert in Arabic-English code-switching and machine translation.
+Your task is to translate the following code-switched Arabic-English texts into fluent, natural English.
+
+Each text may contain:
+- Arabic script (standard Arabic)
+- Arabizi (Arabic written in Latin script, e.g., "7abibi", "ana raye7")
+- English words or phrases
+- A mixture of all of the above
+
+Instructions:
+- Preserve the original meaning as accurately as possible.
+- Capture pragmatic nuances, tone, and intent — not just literal word meaning.
+- Produce fluent, natural English that a native speaker would use.
+
+Return your response as a JSON array following this exact format:
+[
+  {
+    "sent": "sent_<sent_num>",
+    "translation": "<translated text>"
+  },
+  ...
+]
+
+Rules:
+- Do not include any explanation or additional text outside the JSON.
+- Every input sentence must have exactly one translation in the output.
+- Preserve sentence order.
+
+Here are some examples:
+
+Texts:
+sent_1: "khalas, I'm done with this"
+sent_2: "كانت المحاضرة ممتازة I learned a lot today"
+sent_3: "ana ta3ban jiddan, can't focus anymore"
+sent_4: "el-meeting was so boring wallah"
+sent_5: "Oui okay 7abibi, bukra we'll talk"
+
+Output:
+[
+  {
+    "sent": "sent_1",
+    "translation": "That's it, I'm completely done with this."
+  },
+  {
+    "sent": "sent_2",
+    "translation": "The lecture was excellent. I learned a lot today."
+  },
+  {
+    "sent": "sent_3",
+    "translation": "I'm extremely tired, I can't focus anymore."
+  },
+  {
+    "sent": "sent_4",
+    "translation": "The meeting was so boring, I swear."
+  },
+  {
+    "sent": "sent_5",
+    "translation": "Yes okay my dear, we'll talk tomorrow."
+  }
+]
+
+Now translate the following:
+Texts:
+sent_{sent_num}: "{sentence}"
