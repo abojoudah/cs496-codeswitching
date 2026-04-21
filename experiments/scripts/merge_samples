@@ -1,0 +1,117 @@
+"""
+merge_samples.py
+Combines arabizi_eval_sample_seed42.json and ar_en_cs_eval_sample_seed42.json
+into a single unified sample_500.json for use by the experiment runner and
+evaluation script.
+
+Run this AFTER both sampling scripts have been executed.
+
+Output format per record:
+{
+  "id": "arabizi_001",          # unified sequential ID
+  "dataset": "arabizi",         # or "ar_en_cs"
+  "original_id": "...",         # original sentence ID from source dataset
+  "text": "...",                 # full sentence as a string
+  "tokens": [...],              # list of tokens
+  "gold_labels": [...],         # list of gold labels, one per token
+  "sentence_type": "...",       # e.g. mixed_AR_EN, mono_AR
+  "n_tokens": 12
+}
+"""
+
+import json
+
+ARABIZI_FILE  = "experiments/data/arabizi_eval_sample_seed42.json"
+ARCS_FILE     = "experiments/data/ar_en_cs_eval_sample_seed42.json"
+OUTPUT_FILE   = "experiments/data/sample_500.json"
+
+def load_arabizi(path: str) -> list:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    unified = []
+    for i, r in enumerate(data["records"], start=1):
+        unified.append({
+            "id": f"arabizi_{i:03d}",
+            "dataset": "arabizi",
+            "original_id": str(r["original_id"]),
+            "text": r["text"],
+            "tokens": r["tokens"],
+            "gold_labels": r["gold_labels"],
+            "sentence_type": r["sentence_type"],
+            "n_tokens": r["n_tokens"],
+        })
+    return unified
+
+def load_ar_en_cs(path: str) -> list:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    unified = []
+    for i, r in enumerate(data["samples"], start=1):
+        unified.append({
+            "id": f"arencs_{i:03d}",
+            "dataset": "ar_en_cs",
+            "original_id": str(r["sentence_id"]),
+            "text": r["text"],
+            "tokens": r["tokens"],
+            "gold_labels": r["gold_labels"],
+            "sentence_type": r["sentence_type"],
+            "n_tokens": r["token_count"],
+        })
+    return unified
+
+def validate(records: list):
+    """Basic sanity checks before saving."""
+    assert len(records) == 500, f"Expected 500 records, got {len(records)}"
+
+    ids = [r["id"] for r in records]
+    assert len(ids) == len(set(ids)), "Duplicate IDs found"
+
+    for r in records:
+        assert len(r["tokens"]) == len(r["gold_labels"]), \
+            f"Token/label count mismatch in {r['id']}: " \
+            f"{len(r['tokens'])} tokens vs {len(r['gold_labels'])} labels"
+        assert len(r["tokens"]) > 0, f"Empty token list in {r['id']}"
+        valid_labels = {"AR", "EN", "AR-LAT", "OTHER", "OL"}
+        for label in r["gold_labels"]:
+            assert label in valid_labels, \
+                f"Invalid label '{label}' in {r['id']}"
+
+    print(f"Validation passed: {len(records)} records, all token/label counts match.")
+
+def main():
+    arabizi_records = load_arabizi(ARABIZI_FILE)
+    arencs_records  = load_ar_en_cs(ARCS_FILE)
+
+    all_records = arabizi_records + arencs_records
+    validate(all_records)
+
+    # Summary stats
+    from collections import Counter
+    dataset_counts = Counter(r["dataset"] for r in all_records)
+    label_counts   = Counter(
+        label
+        for r in all_records
+        for label in r["gold_labels"]
+    )
+
+    output = {
+        "description": "Unified 500-sentence evaluation sample for CS496 code-switching benchmarking project.",
+        "seed": 42,
+        "total_sentences": len(all_records),
+        "dataset_breakdown": dict(dataset_counts),
+        "total_tokens": sum(r["n_tokens"] for r in all_records),
+        "label_distribution": dict(label_counts),
+        "records": all_records,
+    }
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    print(f"\nSaved {len(all_records)} records to {OUTPUT_FILE}")
+    print(f"Dataset breakdown: {dict(dataset_counts)}")
+    print(f"Label distribution: {dict(label_counts)}")
+
+if __name__ == "__main__":
+    main()
