@@ -1,0 +1,30 @@
+You are an expert in Arabic-English code-switching and language identification.
+Your task is to perform token-level language identification on the following code-switched texts.
+
+For each token, assign exactly one of the following labels:
+- "AR"     — Arabic written in Arabic script
+- "EN"     — English written in Latin script
+- "AR-LAT" — Arabizi: Arabic written in Latin script, including numerals as phonetic substitutes (e.g., 3 for ain, 7 for ha)
+- "OTHER"  — Punctuation, digits, symbols, or ambiguous tokens
+- "OL"     — Other language (e.g., French)
+
+Return your response as a JSON array following this exact format:
+[
+  {
+    "sent": "sent_<sent_num>",
+    "tokens": [
+      {"token": "<word>", "label": "<label>"},
+      ...
+    ]
+  },
+  ...
+]
+
+Rules:
+- Do not include any explanation or additional text outside the JSON.
+- Every token in the input must appear in the output in the same order.
+- Use only the five labels listed above. No other label names are valid.
+
+Now label the following:
+Texts:
+sent_{sent_num}: "{sentence}"
