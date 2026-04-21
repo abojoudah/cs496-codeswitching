@@ -27,68 +27,109 @@ Rules:
 
 Here are some examples:
 
-Texts: 
-sent_1: "w akid ma illegaly L disk antenne ."
-sent_2: "kif el-meeting today ?"
-sent_3: "Oui okay 7abibi مرحبا !"
-sent_4: "ana raye7 el jam3a today 3al bus"
-sent_5: "the university مغلقة closed @ 5"
+Texts:
+sent_1: "this broke my heart . allah y8omo bslamah w yshfeeh yarab ."
+sent_2: "I ' ve never heard that anywhere else - only كعك ."
+sent_3: "Italian culture . Telenovelas . La vache qui rie ."
+sent_4: "Even the IMF are using Riad Salemeh as a كبش محرقة ."
+sent_5: "wallah al - jaza2er w sha3biha kolha 3ala 3ainna w rasna . shukran 3ala mafhoomik w shar7ik el jameel wl 2aneeq . salam 3alaikom ."
 
 Output:
 [
   {
     "sent": "sent_1",
     "tokens": [
-      {"token": "w",         "label": "AR-LAT"},
-      {"token": "akid",      "label": "AR-LAT"},
-      {"token": "ma",        "label": "AR-LAT"},
-      {"token": "illegaly",  "label": "EN"},
-      {"token": "L",         "label": "AR-LAT"},
-      {"token": "disk",      "label": "EN"},
-      {"token": "antenne",   "label": "OL"},
-      {"token": ".",         "label": "OTHER"}
+      {"token": "this",     "label": "EN"},
+      {"token": "broke",    "label": "EN"},
+      {"token": "my",       "label": "EN"},
+      {"token": "heart",    "label": "EN"},
+      {"token": ".",        "label": "OTHER"},
+      {"token": "allah",    "label": "AR-LAT"},
+      {"token": "y8omo",    "label": "AR-LAT"},
+      {"token": "bslamah",  "label": "AR-LAT"},
+      {"token": "w",        "label": "AR-LAT"},
+      {"token": "yshfeeh",  "label": "AR-LAT"},
+      {"token": "yarab",    "label": "AR-LAT"},
+      {"token": ".",        "label": "OTHER"}
     ]
   },
   {
     "sent": "sent_2",
     "tokens": [
-      {"token": "كيف",       "label": "AR"},
-      {"token": "el-meeting","label": "EN"},
-      {"token": "today",     "label": "EN"},
-      {"token": "?",         "label": "OTHER"}
+      {"token": "I",        "label": "EN"},
+      {"token": "'",        "label": "EN"},
+      {"token": "ve",       "label": "EN"},
+      {"token": "never",    "label": "EN"},
+      {"token": "heard",    "label": "EN"},
+      {"token": "that",     "label": "EN"},
+      {"token": "anywhere", "label": "EN"},
+      {"token": "else",     "label": "EN"},
+      {"token": "-",        "label": "OTHER"},
+      {"token": "only",     "label": "EN"},
+      {"token": "كعك",     "label": "AR"},
+      {"token": ".",        "label": "OTHER"}
     ]
   },
   {
     "sent": "sent_3",
     "tokens": [
-      {"token": "Oui",       "label": "OL"},
-      {"token": "okay",      "label": "EN"},
-      {"token": "7abibi",    "label": "AR-LAT"},
-      {"token": "مرحبا",    "label": "AR"},
-      {"token": "!",         "label": "OTHER"}
+      {"token": "Italian",    "label": "EN"},
+      {"token": "culture",    "label": "EN"},
+      {"token": ".",          "label": "OTHER"},
+      {"token": "Telenovelas","label": "OTHER"},
+      {"token": ".",          "label": "OTHER"},
+      {"token": "La",         "label": "OL"},
+      {"token": "vache",      "label": "OL"},
+      {"token": "qui",        "label": "OL"},
+      {"token": "rie",        "label": "OL"},
+      {"token": ".",          "label": "OTHER"}
     ]
   },
   {
     "sent": "sent_4",
     "tokens": [
-      {"token": "ana",       "label": "AR-LAT"},
-      {"token": "raye7",     "label": "AR-LAT"},
-      {"token": "el",        "label": "AR-LAT"},
-      {"token": "jam3a",     "label": "AR-LAT"},
-      {"token": "today",     "label": "EN"},
-      {"token": "3al",       "label": "AR-LAT"},
-      {"token": "bus",       "label": "EN"}
+      {"token": "Even",      "label": "EN"},
+      {"token": "the",       "label": "EN"},
+      {"token": "IMF",       "label": "EN"},
+      {"token": "are",       "label": "EN"},
+      {"token": "using",     "label": "EN"},
+      {"token": "Riad",      "label": "EN"},
+      {"token": "Salemeh",   "label": "EN"},
+      {"token": "as",        "label": "EN"},
+      {"token": "a",         "label": "EN"},
+      {"token": "كبش",      "label": "AR"},
+      {"token": "محرقة",    "label": "AR"},
+      {"token": ".",         "label": "OTHER"}
     ]
   },
   {
     "sent": "sent_5",
     "tokens": [
-      {"token": "the",       "label": "EN"},
-      {"token": "university","label": "EN"},
-      {"token": "مغلقة",    "label": "AR"},
-      {"token": "closed",    "label": "EN"},
-      {"token": "@",         "label": "OTHER"},
-      {"token": "5",         "label": "OTHER"}
+      {"token": "wallah",    "label": "AR-LAT"},
+      {"token": "al",        "label": "AR-LAT"},
+      {"token": "-",         "label": "AR-LAT"},
+      {"token": "jaza2er",   "label": "AR-LAT"},
+      {"token": "w",         "label": "AR-LAT"},
+      {"token": "sha3biha",  "label": "AR-LAT"},
+      {"token": "kolha",     "label": "AR-LAT"},
+      {"token": "3ala",      "label": "AR-LAT"},
+      {"token": "3ainna",    "label": "AR-LAT"},
+      {"token": "w",         "label": "OTHER"},
+      {"token": "rasna",     "label": "AR-LAT"},
+      {"token": ".",         "label": "OTHER"},
+      {"token": "shukran",   "label": "AR-LAT"},
+      {"token": "3ala",      "label": "AR-LAT"},
+      {"token": "mafhoomik", "label": "AR-LAT"},
+      {"token": "w",         "label": "AR-LAT"},
+      {"token": "shar7ik",   "label": "AR-LAT"},
+      {"token": "el",        "label": "AR-LAT"},
+      {"token": "jameel",    "label": "AR-LAT"},
+      {"token": "wl",        "label": "AR-LAT"},
+      {"token": "2aneeq",    "label": "AR-LAT"},
+      {"token": ".",         "label": "OTHER"},
+      {"token": "salam",     "label": "AR-LAT"},
+      {"token": "3alaikom",  "label": "AR-LAT"},
+      {"token": ".",         "label": "OTHER"}
     ]
   }
 ]
