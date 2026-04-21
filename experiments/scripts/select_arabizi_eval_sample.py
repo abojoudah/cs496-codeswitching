@@ -4,7 +4,7 @@ import pandas as pd
 
 SEED = 42
 INPUT_FILE = "experiments/data/words_annotated.csv"
-OUTPUT_FILE = "experiments/data/arabizi_eval_sample_seed42.json"
+OUTPUT_PATH = "experiments/data/ar_en_cs_eval_sample_seed42.json"
 
 LABEL_MAP = {
     0: "AR-LAT",
