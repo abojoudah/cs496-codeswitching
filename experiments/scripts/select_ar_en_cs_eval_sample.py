@@ -4,7 +4,7 @@ from collections import Counter, defaultdict
 from random import Random
 
 INPUT_PATH = "AR-EN Intra-word CS Corpus.txt"
-OUTPUT_PATH = "ar_en_cs_eval_sample_seed42.json"
+OUTPUT_PATH = "experiments/data/ar_en_cs_eval_sample_seed42.json"
 SEED = 42
 SAMPLE_SIZE = 250
 
