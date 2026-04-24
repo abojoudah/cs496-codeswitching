@@ -10,8 +10,6 @@
 
 - **LID** — Language Identification: detecting what language each token belongs to.
 - **Arabizi** — Arabic written in Latin script, often using numerals as phonetic substitutes (e.g., 3 = ع, 7 = ح).
-- **Semantic meaning** — The literal, dictionary-level meaning of a word or sentence.
-- **Pragmatic meaning** — The contextual, cultural, or implied meaning behind a word or sentence.
 - **Macro F1** — The unweighted average F1-score across all labels; treats rare labels equally to common ones.
 
 ---
@@ -39,49 +37,35 @@ To what extent can LLMs accurately perform token-level language identification o
 
 ---
 
-## RQ2 — Machine Translation of Code-Switched Text
-
-**Research Question:**  
-How do LLMs preserve semantic and pragmatic meaning when translating Arabic-English code-switched text into fluent English?
-
-### H1
-> We hypothesize that translation quality, as measured by automatic metrics (BLEU, chrF++, BERTScore) and human evaluation, will be lower for Arabizi-based code-switched inputs than for Arabic-script code-switched inputs.
-
-**Rationale:** Arabizi's non-standard spelling creates ambiguity that disrupts both tokenization and meaning recovery during translation.
-
-**Maps to:** Table 3 — Per-Dataset Comparison (Arabizi dataset vs AR-EN CS dataset, translation metrics).
-
----
-
-### H2
-> We hypothesize that few-shot prompting will produce higher translation quality scores than zero-shot prompting for Arabic-English code-switched translation.
-
-**Rationale:** Few-shot examples demonstrate the expected output style and help the model handle code-switched input more consistently.
-
-**Maps to:** Table 1 — Overall Results (Zero-Shot vs Few-Shot rows, translation metric columns).
-
----
-
 ### H3
-> We hypothesize that human evaluation ratings for semantic preservation will exceed those for pragmatic preservation across all models tested.
+> We hypothesize that all models will perform significantly worse on AR-LAT (Arabizi) tokens than on AR or EN tokens.
 
-**Rationale:** Literal meaning is easier to recover from surface forms than culturally implied meaning. For example, "khalas" can be translated literally as "finished" but pragmatically signals exhaustion or frustration — a distinction models are unlikely to capture consistently.
+**Rationale:** Arabizi is non-standardized, uses numeral substitutions, and is underrepresented in training data. AR and EN are well-established scripts with abundant training resources.
 
-**Maps to:** Human Evaluation Table — Semantic score vs Pragmatic score per model.
+**Maps to:** Table 2 — Per-Label F1 Breakdown (AR-LAT F1 vs AR F1 and EN F1, across all models).
 
 ---
 
-## RQ3 — Cross-Task and Cross-Model Comparison
+### H4
+> We hypothesize that models will perform differently on the Arabizi dataset (English-dominant, Latin-script mixing) compared to the AR-EN CS dataset (Arabic-dominant, script-based mixing).
+
+**Rationale:** The two datasets have different code-switching densities and dominant languages. Models may handle one pattern better than the other depending on their pretraining distribution.
+
+**Maps to:** Table 3 — Per-Dataset Comparison (Arabizi dataset vs AR-EN CS dataset, same metrics split by dataset).
+
+---
+
+## RQ2 — Cross-Model Comparison
 
 **Research Question:**  
-Which LLM(s) demonstrate superior performance on Arabic-English code-switching tasks, and is there evidence of task-specific specialization (LID vs translation) across models?
+Which LLM(s) demonstrate superior performance on Arabic-English code-switched language identification, and is there a statistically meaningful difference across models?
 
 ### H1
-> We hypothesize that no single LLM will achieve the highest ranking on both token-level LID and translation tasks simultaneously, indicating task-specific specialization.
+> We hypothesize that among the four models tested, there is a statistically meaningful difference in overall token-level macro F1 for code-switched language identification.
 
-**Rationale:** LID requires strict format compliance and fine-grained label accuracy. Translation rewards fluency and semantic coverage. These objectives may favor different model architectures or training emphases.
+**Rationale:** Different models have different pretraining data, tokenizers, and multilingual capabilities. These differences should produce measurably different LID performance.
 
-**Maps to:** Combined summary table — Model rankings on LID (macro F1) vs MT (BLEU/BERTScore) side by side.
+**Maps to:** Table 1 — Overall Results (compare macro F1 across all 4 models).
 
 ---
 
@@ -100,8 +84,7 @@ Which LLM(s) demonstrate superior performance on Arabic-English code-switching t
 |---|---|---|
 | RQ1 H1 | AR-LAT F1 vs AR F1 | Table 2 — Per-Label F1 |
 | RQ1 H2 | Macro F1: few-shot vs zero-shot | Table 1 — Overall Results |
-| RQ2 H1 | BLEU / chrF++ / BERTScore by dataset | Table 3 — Per-Dataset Comparison |
-| RQ2 H2 | Translation metrics: few-shot vs zero-shot | Table 1 — Overall Results |
-| RQ2 H3 | Human eval: semantic score vs pragmatic score | Human Evaluation Table |
-| RQ3 H1 | LID rank vs MT rank per model | Summary Ranking Table |
-| RQ3 H2 | AR F1 rank vs AR-LAT F1 rank per model | Table 2 — Per-Label F1 |
+| RQ1 H3 | AR-LAT F1 vs AR F1 and EN F1 | Table 2 — Per-Label F1 |
+| RQ1 H4 | Metrics split by dataset | Table 3 — Per-Dataset Comparison |
+| RQ2 H1 | Macro F1 across all models | Table 1 — Overall Results |
+| RQ2 H2 | AR F1 rank vs AR-LAT F1 rank | Table 2 — Per-Label F1 |
