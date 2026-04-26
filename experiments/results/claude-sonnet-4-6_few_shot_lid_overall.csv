@@ -1,0 +1,2 @@
+model,strategy,accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1,parse_failure_rate
+claude-sonnet-4-6,few_shot,0.737,0.7012,0.8153,0.6816,0.737,0.737,0.737,8.4
