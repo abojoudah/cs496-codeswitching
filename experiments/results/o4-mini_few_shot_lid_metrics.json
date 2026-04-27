@@ -1,0 +1,193 @@
+{
+  "experiment": "lid",
+  "model": "o4-mini",
+  "strategy": "few_shot",
+  "total_sentences": 500,
+  "aligned_sentences": 435,
+  "skipped_sentences": 65,
+  "total_tokens_evaluated": 3999,
+  "accuracy": 0.7337,
+  "macro_precision": 0.6711,
+  "macro_recall": 0.812,
+  "macro_f1": 0.6493,
+  "micro_precision": 0.7337,
+  "micro_recall": 0.7337,
+  "micro_f1": 0.7337,
+  "parse_failure_rate": 13.0,
+  "per_label_metrics": [
+    {
+      "label": "AR",
+      "precision": 0.9478,
+      "recall": 0.4137,
+      "f1": 0.576,
+      "support": 1448
+    },
+    {
+      "label": "EN",
+      "precision": 0.9079,
+      "recall": 0.969,
+      "f1": 0.9375,
+      "support": 1486
+    },
+    {
+      "label": "AR-LAT",
+      "precision": 0.3283,
+      "recall": 0.8098,
+      "f1": 0.4672,
+      "support": 510
+    },
+    {
+      "label": "OTHER",
+      "precision": 0.954,
+      "recall": 0.8673,
+      "f1": 0.9086,
+      "support": 550
+    },
+    {
+      "label": "OL",
+      "precision": 0.2174,
+      "recall": 1.0,
+      "f1": 0.3571,
+      "support": 5
+    }
+  ],
+  "confusion_matrix": {
+    "AR": {
+      "AR": 599,
+      "EN": 19,
+      "AR-LAT": 0,
+      "OTHER": 14,
+      "OL": 0
+    },
+    "EN": {
+      "AR": 18,
+      "EN": 1440,
+      "AR-LAT": 91,
+      "OTHER": 37,
+      "OL": 0
+    },
+    "AR-LAT": {
+      "AR": 824,
+      "EN": 14,
+      "AR-LAT": 413,
+      "OTHER": 7,
+      "OL": 0
+    },
+    "OTHER": {
+      "AR": 7,
+      "EN": 13,
+      "AR-LAT": 3,
+      "OTHER": 477,
+      "OL": 0
+    },
+    "OL": {
+      "AR": 0,
+      "EN": 0,
+      "AR-LAT": 3,
+      "OTHER": 15,
+      "OL": 5
+    }
+  },
+  "skipped_details": [
+    {
+      "id": "arabizi_007",
+      "expected": 9,
+      "got": 0
+    },
+    {
+      "id": "arabizi_013",
+      "expected": 19,
+      "got": 0
+    },
+    {
+      "id": "arabizi_015",
+      "expected": 44,
+      "got": 0
+    },
+    {
+      "id": "arabizi_022",
+      "expected": 35,
+      "got": 0
+    },
+    {
+      "id": "arabizi_041",
+      "expected": 32,
+      "got": 0
+    },
+    {
+      "id": "arabizi_046",
+      "expected": 86,
+      "got": 0
+    },
+    {
+      "id": "arabizi_058",
+      "expected": 20,
+      "got": 0
+    },
+    {
+      "id": "arabizi_070",
+      "expected": 24,
+      "got": 0
+    },
+    {
+      "id": "arabizi_074",
+      "expected": 16,
+      "got": 0
+    },
+    {
+      "id": "arabizi_079",
+      "expected": 67,
+      "got": 0
+    },
+    {
+      "id": "arabizi_087",
+      "expected": 13,
+      "got": 0
+    },
+    {
+      "id": "arabizi_090",
+      "expected": 33,
+      "got": 0
+    },
+    {
+      "id": "arabizi_093",
+      "expected": 24,
+      "got": 0
+    },
+    {
+      "id": "arabizi_166",
+      "expected": 11,
+      "got": 0
+    },
+    {
+      "id": "arabizi_170",
+      "expected": 52,
+      "got": 0
+    },
+    {
+      "id": "arabizi_202",
+      "expected": 48,
+      "got": 0
+    },
+    {
+      "id": "arabizi_206",
+      "expected": 48,
+      "got": 0
+    },
+    {
+      "id": "arabizi_216",
+      "expected": 42,
+      "got": 0
+    },
+    {
+      "id": "arabizi_218",
+      "expected": 11,
+      "got": 0
+    },
+    {
+      "id": "arabizi_221",
+      "expected": 50,
+      "got": 0
+    }
+  ]
+}

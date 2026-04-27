@@ -1,0 +1,2 @@
+model,strategy,accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1,parse_failure_rate
+o4-mini,few_shot,0.7337,0.6711,0.812,0.6493,0.7337,0.7337,0.7337,13.0
