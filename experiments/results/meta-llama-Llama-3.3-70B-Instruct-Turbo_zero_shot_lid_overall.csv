@@ -1,0 +1,2 @@
+model,strategy,accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1,parse_failure_rate
+meta-llama/Llama-3.3-70B-Instruct-Turbo,zero_shot,0.7415,0.657,0.7092,0.6183,0.7415,0.7415,0.7415,11.4
