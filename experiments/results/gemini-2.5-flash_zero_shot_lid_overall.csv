@@ -1,0 +1,2 @@
+model,strategy,accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1,parse_failure_rate
+gemini-2.5-flash,zero_shot,0.7598,0.6925,0.8176,0.6804,0.7598,0.7598,0.7598,7.6
