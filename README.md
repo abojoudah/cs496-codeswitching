@@ -44,10 +44,13 @@ cs496-codeswitching/
     |   ├── arabizi_eval_sample_seed42.json # 250 Arabizi sentences extracted separately
     |   ├── ar_en_cs_eval_sample_seed42.json #  250 AR-EN CS sentences extracted separately
     ├── scripts/
-    │   ├── experiment_runner.ipynb  # Model-agnostic API runner (Colab)
-    │   ├── evaluate.py             # Evaluation metrics script
-    │   ├── compile_results.py      # Phase 4: comparison table builder
-    │   └── error_analysis.py       # Phase 5: error taxonomy builder
+    │   ├── experiment_runner.ipynb      # Model-agnostic API runner (Colab)
+    │   ├── evaluate.py                  # Evaluation metrics script
+    │   ├── compile_results.py           # Phase 4: comparison table builder
+    │   ├── error_analysis.py            # Phase 5: error taxonomy builder
+    │   ├── select_arabizi_eval_sample.py    # Sample 250 Arabizi sentences
+    │   ├── select_ar_en_cs_eval_sample.py   # Sample 250 AR-EN CS sentences
+    │   └── merge_samples               # Combine both samples into sample_500.json
     └── results/
         ├── o4-mini/                # GPT o4-mini outputs
         ├── claude-sonnet/          # Claude Sonnet 4.6 outputs
