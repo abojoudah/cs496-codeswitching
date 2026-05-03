@@ -33,8 +33,7 @@ cs496-codeswitching/
 │   └── iaa_compute.py              # Fleiss Kappa computation script
 ├── analysis/
 │   └── descriptive_stats.py        # Descriptive statistics + figures
-├── scripts/
-│   └── preprocess.py               # Shared preprocessing utilities
+│ 
 └── experiments/
     ├── hypotheses.md               # Research questions and testable hypotheses
     ├── prompts/
