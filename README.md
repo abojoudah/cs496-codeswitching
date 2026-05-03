@@ -40,7 +40,9 @@ cs496-codeswitching/
     │   ├── zero_shot_lid.txt       # Zero-shot prompt template
     │   └── few_shot_lid.txt        # Few-shot prompt template (5 examples)
     ├── data/
-    │   └── sample_500.json         # Stratified evaluation sample (seed=42)
+    │   ├── sample_500.json         # Stratified evaluation sample (seed=42)
+    |   ├── arabizi_eval_sample_seed42.json # 250 Arabizi sentences extracted separately
+    |   ├── ar_en_cs_eval_sample_seed42.json #  250 AR-EN CS sentences extracted separately
     ├── scripts/
     │   ├── experiment_runner.ipynb  # Model-agnostic API runner (Colab)
     │   ├── evaluate.py             # Evaluation metrics script
