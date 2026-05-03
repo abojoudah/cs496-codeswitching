@@ -52,7 +52,7 @@ MODEL_ORDER = list(MODEL_DISPLAY.keys())
 def discover_models(results_dir: str) -> list[tuple[str, str, str]]:
     """Find all (model, strategy, prefix) tuples from _metrics.json files."""
     entries = []
-    for path in sorted(glob.glob(f"{results_dir}/*_lid_metrics.json")):
+    for path in sorted(glob.glob(f"{results_dir}/**/*_lid_metrics.json", recursive=True)):
         fname = os.path.basename(path)
         # Pattern: {model}_{strategy}_lid_metrics.json
         suffix = "_lid_metrics.json"
@@ -80,7 +80,7 @@ def sort_key(model: str, strategy: str) -> tuple:
 def build_table1(results_dir: str) -> pd.DataFrame:
     """Build Table 1 from _overall.csv files."""
     rows = []
-    for path in sorted(glob.glob(f"{results_dir}/*_lid_overall.csv")):
+    for path in sorted(glob.glob(f"{results_dir}/**/*_lid_overall.csv", recursive=True)):
         df = pd.read_csv(path)
         for _, row in df.iterrows():
             rows.append(row.to_dict())
@@ -123,7 +123,7 @@ def build_table1(results_dir: str) -> pd.DataFrame:
 def build_table2(results_dir: str) -> pd.DataFrame:
     """Build Table 2 from _per_label.csv files."""
     rows = []
-    for path in sorted(glob.glob(f"{results_dir}/*_lid_per_label.csv")):
+    for path in sorted(glob.glob(f"{results_dir}/**/*_lid_per_label.csv", recursive=True)):
         fname = os.path.basename(path)
         suffix = "_lid_per_label.csv"
         stem = fname[: -len(suffix)]
@@ -210,7 +210,7 @@ def build_table3(results_dir: str, sample_path: str) -> pd.DataFrame:
         sample_data = json.load(f)
 
     rows = []
-    for path in sorted(glob.glob(f"{results_dir}/*_lid_parsed.json")):
+    for path in sorted(glob.glob(f"{results_dir}/**/*_lid_parsed.json", recursive=True)):
         fname = os.path.basename(path)
         suffix = "_lid_parsed.json"
         stem = fname[: -len(suffix)]
@@ -270,7 +270,7 @@ def main():
                         help="Output directory for tables (defaults to results-dir).")
     args = parser.parse_args()
 
-    out_dir = args.out or args.results_dir
+    out_dir = args.out or os.path.join(args.results_dir, "comparison")
     os.makedirs(out_dir, exist_ok=True)
 
     # ── Table 1 ──────────────────────────────────────────────────────────
