@@ -1,0 +1,222 @@
+[
+  {
+    "token": "fl",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_002",
+    "sentence": "Agmad writer fl donyaa 🥁",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "Bethby",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_003",
+    "sentence": "Bethby animations ?",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "ahmed",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_009",
+    "sentence": "gama3a ahmed zaki might be doing this as a distraction plz plz plz ya gama3a we have only 24hrs until he gets released g",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "AR-LAT"
+  },
+  {
+    "token": "nadine",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_014",
+    "sentence": "Hey , mt3rfesh nadine 2flt twitter leh ?",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "20kgs",
+    "gold": "EN",
+    "dataset": "arabizi",
+    "sid": "arabizi_016",
+    "sentence": "i don ’ t know bass after i lost weight ba2et dayman bardan w i think it ’ s because i had like 20kgs of fat beydaffuni ",
+    "GPT o4-mini": "OTHER",
+    "Claude Sonnet": "OTHER",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "OTHER"
+  },
+  {
+    "token": "FMNSKCNSKCNDKNCM",
+    "gold": "OTHER",
+    "dataset": "arabizi",
+    "sid": "arabizi_023",
+    "sentence": "42 PERCENT PLAGIARIZED EZAY I CHANGED EVERY WORD IM GOING TO FMNSKCNSKCNDKNCM",
+    "GPT o4-mini": "OTHER",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "OTHER",
+    "LLaMA 70B": "OTHER"
+  },
+  {
+    "token": "El",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_024",
+    "sentence": "El videoclip bta3 pablo 🔥 🔥 🔥 🔥",
+    "GPT o4-mini": "OL",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "Habiba",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_027",
+    "sentence": "Habiba w jannah byetkalemo zai baad zai elbent elfi elvn bta3et lemon tree",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "AR"
+  },
+  {
+    "token": "AHAHHAA",
+    "gold": "OTHER",
+    "dataset": "arabizi",
+    "sid": "arabizi_028",
+    "sentence": "AHAHHAA Kont lessa dakhal a2ool en wheelers made this extra special , zoom calls elite ba2aa",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "OTHER",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "OTHER"
+  },
+  {
+    "token": "brgr",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_030",
+    "sentence": "Nefsi f wings , brgr , peking , sushi",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "mohamed",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_037",
+    "sentence": "Hi mohamed salah is cancelled w masm3sh 7d y2ol 3leh fakhr el 3arb tany",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "dayy",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_038",
+    "sentence": "Happy sara dayy !",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "AR-LAT"
+  },
+  {
+    "token": "tala",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_040",
+    "sentence": "Or tala 💀",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "AR-LAT"
+  },
+  {
+    "token": "En",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_047",
+    "sentence": "En they advertise it with the 5g antenna bas don ’ t sell it with one anywhere gher el US market",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "5g",
+    "gold": "OTHER",
+    "dataset": "arabizi",
+    "sid": "arabizi_047",
+    "sentence": "En they advertise it with the 5g antenna bas don ’ t sell it with one anywhere gher el US market",
+    "GPT o4-mini": "OTHER",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "OTHER"
+  },
+  {
+    "token": "US",
+    "gold": "EN",
+    "dataset": "arabizi",
+    "sid": "arabizi_047",
+    "sentence": "En they advertise it with the 5g antenna bas don ’ t sell it with one anywhere gher el US market",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "OTHER"
+  },
+  {
+    "token": "en",
+    "gold": "EN",
+    "dataset": "arabizi",
+    "sid": "arabizi_048",
+    "sentence": "howa ana leh f major kol ma agy akhalas shoghlo ahes en I ’ d rather be doing ANYTHING else begad",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "AR-LAT",
+    "Gemini Flash": "AR-LAT",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "Allah",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_065",
+    "sentence": "It is between them and Allah he will judge them justly",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "bravo",
+    "gold": "EN",
+    "dataset": "arabizi",
+    "sid": "arabizi_069",
+    "sentence": "bravo habibi !",
+    "GPT o4-mini": "EN",
+    "Claude Sonnet": "OL",
+    "Gemini Flash": "OL",
+    "LLaMA 70B": "EN"
+  },
+  {
+    "token": "Utaibah",
+    "gold": "AR-LAT",
+    "dataset": "arabizi",
+    "sid": "arabizi_074",
+    "sentence": "I 'm from Utaibah , but live in the UAE and am a Jordanian Palestinian .",
+    "GPT o4-mini": "AR-LAT",
+    "Claude Sonnet": "EN",
+    "Gemini Flash": "EN",
+    "LLaMA 70B": "AR-LAT"
+  }
+]
