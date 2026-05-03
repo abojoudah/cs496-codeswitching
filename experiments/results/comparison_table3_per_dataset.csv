@@ -1,0 +1,17 @@
+Model,Strategy,Dataset,Accuracy,Macro F1,Micro F1
+GPT o4-mini,Zero-shot,AR-EN CS,0.5521,0.4676,0.5521
+GPT o4-mini,Zero-shot,Arabizi,0.9226,0.7835,0.9226
+GPT o4-mini,Few-shot,AR-EN CS,0.5231,0.4639,0.5231
+GPT o4-mini,Few-shot,Arabizi,0.9251,0.8126,0.9251
+Claude Sonnet 4.6,Zero-shot,AR-EN CS,0.5564,0.469,0.5564
+Claude Sonnet 4.6,Zero-shot,Arabizi,0.9238,0.8469,0.9238
+Claude Sonnet 4.6,Few-shot,AR-EN CS,0.5622,0.4702,0.5622
+Claude Sonnet 4.6,Few-shot,Arabizi,0.9243,0.8471,0.9243
+Gemini 2.5 Flash,Zero-shot,AR-EN CS,0.5678,0.4748,0.5678
+Gemini 2.5 Flash,Zero-shot,Arabizi,0.9272,0.8369,0.9272
+Gemini 2.5 Flash,Few-shot,AR-EN CS,0.5773,0.4778,0.5773
+Gemini 2.5 Flash,Few-shot,Arabizi,0.928,0.8159,0.928
+LLaMA 3.3 70B,Zero-shot,AR-EN CS,0.5322,0.4492,0.5322
+LLaMA 3.3 70B,Zero-shot,Arabizi,0.9084,0.7764,0.9084
+LLaMA 3.3 70B,Few-shot,AR-EN CS,0.5529,0.4582,0.5529
+LLaMA 3.3 70B,Few-shot,Arabizi,0.9135,0.7632,0.9135
