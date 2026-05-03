@@ -94,15 +94,17 @@ All models were run with temperature=0.0, max_tokens=2048, on a 500-sentence str
 ## Setup
 
 ```bash
-git clone https://github.com/abojoudah/cs496-codeswitching.git
-cd cs496-codeswitching
+import os
+
+!git clone https://github.com/abojoudah/cs496-codeswitching.git
+%cd cs496-codeswitching
 
 # Download datasets
-bash data/arabizi-wanlp/download.sh
-bash data/arabic-english-cs/download.sh
+!bash data/arabizi-wanlp/download.sh
+!bash data/arabic-english-cs/download.sh
 
 # Install dependencies
-pip install pandas numpy scikit-learn matplotlib seaborn nltk
+!pip install pandas numpy scikit-learn matplotlib seaborn nltk
 ```
 
 ## Running Experiments
