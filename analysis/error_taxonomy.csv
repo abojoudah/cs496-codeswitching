@@ -1,0 +1,19 @@
+error_type,count,percentage
+AR-LAT -> EN,1106,46.7
+OTHER -> EN,345,14.6
+EN -> OTHER,208,8.8
+EN -> AR-LAT,137,5.8
+EN -> AR,123,5.2
+OTHER -> AR,113,4.8
+OTHER -> AR-LAT,97,4.1
+OTHER -> OL,88,3.7
+AR-LAT -> OTHER,65,2.7
+AR-LAT -> OL,23,1.0
+AR -> AR-LAT,22,0.9
+AR -> OTHER,13,0.5
+AR -> EN,8,0.3
+AR-LAT -> AR,7,0.3
+OL -> EN,6,0.3
+EN -> OL,6,0.3
+OL -> AR-LAT,1,0.0
+OL -> OTHER,1,0.0
