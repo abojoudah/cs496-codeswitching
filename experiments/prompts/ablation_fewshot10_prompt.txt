@@ -1,0 +1,55 @@
+You are a linguistic annotation tool. Given a code-switched sentence containing Arabic, English, Arabizi, and possibly other languages, label each token with exactly one of the following labels:
+
+- AR: Arabic written in Arabic script
+- EN: English written in Latin script
+- AR-LAT: Arabizi — Arabic written in Latin script, including numerals as phonetic substitutes (e.g., 3 for ain, 7 for ha)
+- OTHER: Punctuation, digits, symbols, or ambiguous tokens
+- OL: Other language (e.g., French)
+
+Return your answer as a JSON array only, with no explanation or extra text. Each element must have "token" and "label" fields.
+
+Here are some examples:
+
+Sentence: "Oui habibi the weather is nice aujourd'hui !"
+Output:
+[{"token": "Oui", "label": "OL"}, {"token": "habibi", "label": "AR-LAT"}, {"token": "the", "label": "EN"}, {"token": "weather", "label": "EN"}, {"token": "is", "label": "EN"}, {"token": "nice", "label": "EN"}, {"token": "aujourd'hui", "label": "OL"}, {"token": "!", "label": "OTHER"}]
+
+Sentence: "la wallah el movie was so good w ana loved it"
+Output:
+[{"token": "la", "label": "AR-LAT"}, {"token": "wallah", "label": "AR-LAT"}, {"token": "el", "label": "AR-LAT"}, {"token": "movie", "label": "EN"}, {"token": "was", "label": "EN"}, {"token": "so", "label": "EN"}, {"token": "good", "label": "EN"}, {"token": "w", "label": "AR-LAT"}, {"token": "ana", "label": "AR-LAT"}, {"token": "loved", "label": "EN"}, {"token": "it", "label": "EN"}]
+
+Sentence: "mesh 3arfa en howa keda aw la ?"
+Output:
+[{"token": "mesh", "label": "AR-LAT"}, {"token": "3arfa", "label": "AR-LAT"}, {"token": "en", "label": "AR-LAT"}, {"token": "howa", "label": "AR-LAT"}, {"token": "keda", "label": "AR-LAT"}, {"token": "aw", "label": "AR-LAT"}, {"token": "la", "label": "AR-LAT"}, {"token": "?", "label": "OTHER"}]
+
+Sentence: "ma 3refet shoo happened bas it was crazy"
+Output:
+[{"token": "ma", "label": "AR-LAT"}, {"token": "3refet", "label": "AR-LAT"}, {"token": "shoo", "label": "AR-LAT"}, {"token": "happened", "label": "EN"}, {"token": "bas", "label": "AR-LAT"}, {"token": "it", "label": "EN"}, {"token": "was", "label": "EN"}, {"token": "crazy", "label": "EN"}]
+
+Sentence: "bravo 3aleik merci ktir you did great !"
+Output:
+[{"token": "bravo", "label": "OL"}, {"token": "3aleik", "label": "AR-LAT"}, {"token": "merci", "label": "OL"}, {"token": "ktir", "label": "AR-LAT"}, {"token": "you", "label": "EN"}, {"token": "did", "label": "EN"}, {"token": "great", "label": "EN"}, {"token": "!", "label": "OTHER"}]
+
+Sentence: "7abibi ta3al let's go 3al beach today"
+Output:
+[{"token": "7abibi", "label": "AR-LAT"}, {"token": "ta3al", "label": "AR-LAT"}, {"token": "let's", "label": "EN"}, {"token": "go", "label": "EN"}, {"token": "3al", "label": "AR-LAT"}, {"token": "beach", "label": "EN"}, {"token": "today", "label": "EN"}]
+
+Sentence: "ana f class w studying l exam tomorrow ..."
+Output:
+[{"token": "ana", "label": "AR-LAT"}, {"token": "f", "label": "AR-LAT"}, {"token": "class", "label": "EN"}, {"token": "w", "label": "AR-LAT"}, {"token": "studying", "label": "EN"}, {"token": "l", "label": "AR-LAT"}, {"token": "exam", "label": "EN"}, {"token": "tomorrow", "label": "EN"}, {"token": "...", "label": "OTHER"}]
+
+Sentence: "I was like ya 3ammo please la t2ool no"
+Output:
+[{"token": "I", "label": "EN"}, {"token": "was", "label": "EN"}, {"token": "like", "label": "EN"}, {"token": "ya", "label": "AR-LAT"}, {"token": "3ammo", "label": "AR-LAT"}, {"token": "please", "label": "EN"}, {"token": "la", "label": "AR-LAT"}, {"token": "t2ool", "label": "AR-LAT"}, {"token": "no", "label": "EN"}]
+
+Sentence: "the prof said yalla submit el assignment @ 11:59"
+Output:
+[{"token": "the", "label": "EN"}, {"token": "prof", "label": "EN"}, {"token": "said", "label": "EN"}, {"token": "yalla", "label": "AR-LAT"}, {"token": "submit", "label": "EN"}, {"token": "el", "label": "AR-LAT"}, {"token": "assignment", "label": "EN"}, {"token": "@", "label": "OTHER"}, {"token": "11:59", "label": "OTHER"}]
+
+Sentence: "kol sana w enta tayeb ya basha , happy birthday !"
+Output:
+[{"token": "kol", "label": "AR-LAT"}, {"token": "sana", "label": "AR-LAT"}, {"token": "w", "label": "AR-LAT"}, {"token": "enta", "label": "AR-LAT"}, {"token": "tayeb", "label": "AR-LAT"}, {"token": "ya", "label": "AR-LAT"}, {"token": "basha", "label": "AR-LAT"}, {"token": ",", "label": "OTHER"}, {"token": "happy", "label": "EN"}, {"token": "birthday", "label": "EN"}, {"token": "!", "label": "OTHER"}]
+
+Now label the following:
+
+Sentence: "{sentence}"
