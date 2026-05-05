@@ -35,14 +35,14 @@ GOLD_PATH = os.path.join(DATA_DIR, "sample_500.json")
 LABELS = ["AR", "EN", "AR-LAT", "OTHER", "OL"]
 
 TASK3_FILES = {
-    "GPT o4-mini ZS": "o4-mini_zero_shot_lid_parsed.json",
-    "GPT o4-mini FS": "o4-mini_few_shot_lid_parsed.json",
-    "Claude ZS": "claude-sonnet-4-6_zero_shot_lid_parsed.json",
-    "Claude FS": "claude-sonnet-4-6_few_shot_lid_parsed.json",
-    "Gemini ZS": "gemini-2_5-flash_zero_shot_lid_parsed.json",
-    "Gemini FS": "gemini-2_5-flash_few_shot_lid_parsed.json",
-    "LLaMA ZS": "meta-llama-Llama-3_3-70B-Instruct-Turbo_zero_shot_lid_parsed.json",
-    "LLaMA FS": "meta-llama-Llama-3_3-70B-Instruct-Turbo_few_shot_lid_parsed.json",
+    "GPT o4-mini ZS": os.path.join("o4-mini", "o4-mini_zero_shot_lid_parsed.json"),
+    "GPT o4-mini FS": os.path.join("o4-mini", "o4-mini_few_shot_lid_parsed.json"),
+    "Claude ZS": os.path.join("claude-sonnet", "claude-sonnet-4-6_zero_shot_lid_parsed.json"),
+    "Claude FS": os.path.join("claude-sonnet", "claude-sonnet-4-6_few_shot_lid_parsed.json"),
+    "Gemini ZS": os.path.join("gemini-flash", "gemini-2.5-flash_zero_shot_lid_parsed.json"),
+    "Gemini FS": os.path.join("gemini-flash", "gemini-2.5-flash_few_shot_lid_parsed.json"),
+    "LLaMA ZS": os.path.join("llama-70b", "meta-llama-Llama-3.3-70B-Instruct-Turbo_zero_shot_lid_parsed.json"),
+    "LLaMA FS": os.path.join("llama-70b", "meta-llama-Llama-3.3-70B-Instruct-Turbo_few_shot_lid_parsed.json"),
 }
 
 ABLATION_FILES = {
