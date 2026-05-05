@@ -32,7 +32,11 @@ cs496-codeswitching/
 │   ├── create_sample.py
 │   └── iaa_compute.py              # Fleiss Kappa computation script
 ├── analysis/
-│   └── descriptive_stats.py        # Descriptive statistics + figures
+│   ├── significance_tests.py       # McNemar's tests, gold-label correction, error taxonomy
+│   ├── corrected_evaluation.csv    # Accuracy & macro F1 under original vs corrected gold
+│   ├── significance_results.csv    # McNemar's p-values for all comparisons
+│   ├── error_taxonomy.csv          # Error category frequencies after gold correction
+│   └── README.md                   # Documentation for analysis scripts
 │ 
 └── experiments/
     ├── hypotheses.md               # Research questions and testable hypotheses
