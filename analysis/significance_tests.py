@@ -46,7 +46,7 @@ TASK3_FILES = {
 }
 
 ABLATION_FILES = {
-    "Claude Ablation (10-shot)": "claude-sonnet-4-6_ablation_fewshot10_lid_parsed.json",
+    "Claude Ablation (10-shot)": os.path.join("claude-sonnet", "claude-sonnet-4-6_ablation_fewshot10_lid_parsed.json"),
 }
 
 ALL_FILES = {**TASK3_FILES, **ABLATION_FILES}
