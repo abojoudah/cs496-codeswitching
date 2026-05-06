@@ -28,28 +28,47 @@ This project investigates how well large language models (LLMs) handle Arabic-En
 ```
 cs496-codeswitching/
 ├── data/
-│   ├── README.md                   # Download instructions for datasets
-│   └── ...                         # Dataset download scripts
+│   ├── arabic-english-cs/
+│   │   ├── README.md               # Download instructions
+│   │   └── download.sh             # Download script
+│   └── arabizi-wanlp/
+│       ├── README.md               # Download instructions
+│       └── download.sh             # Download script
 ├── annotation/
+│   ├── annotation_sample.csv       # 250-sentence annotation sample
+│   ├── annotation_sample_result.csv# Annotation results
+│   ├── create_sample.py            # Script to generate annotation sample
+│   ├── guidelines.md               # Annotation guidelines
 │   └── iaa_compute.py              # Inter-annotator agreement computation
 ├── experiments/
 │   ├── data/
-│   │   └── sample_500.json         # Stratified 500-sentence evaluation sample
+│   │   ├── sample_500.json         # Stratified 500-sentence evaluation sample
+│   │   ├── arabizi_eval_sample_seed42.json   # Arabizi subset (250 sentences)
+│   │   └── ar_en_cs_eval_sample_seed42.json  # AR-EN CS subset (250 sentences)
+│   ├── hypotheses.md               # Formalized research hypotheses
 │   ├── prompts/
 │   │   ├── zero_shot_lid.txt       # Zero-shot prompt template
 │   │   ├── few_shot_lid.txt        # Few-shot prompt template (5 examples)
 │   │   └── ablation_fewshot10_prompt.txt  # Ablation prompt (10 targeted examples)
 │   ├── scripts/
-│   │   └── evaluate.py             # Shared evaluation script
+│   │   ├── experiment_runner.ipynb  # Main experiment notebook (model-agnostic)
+│   │   ├── experiment_run_ablation.ipynb  # Ablation experiment notebook
+│   │   ├── evaluate.py             # Shared evaluation script (metrics computation)
+│   │   ├── compile_results.py      # Cross-model comparison table builder
+│   │   ├── error_analysis.py       # Error taxonomy and case extraction
+│   │   ├── select_arabizi_eval_sample.py  # Arabizi sample selection (seed=42)
+│   │   ├── select_ar_en_cs_eval_sample.py # AR-EN CS sample selection (seed=42)
+│   │   └── merge_samples           # Merges per-dataset samples into sample_500.json
 │   └── results/
-│       ├── o4-mini/                # GPT o4-mini outputs
-│       ├── claude-sonnet/          # Claude Sonnet 4.6 outputs (incl. ablation)
-│       ├── gemini-flash/           # Gemini 2.5 Flash outputs
-│       ├── llama-70b/              # LLaMA 3.3 70B outputs
-│       ├── comparison/             # Cross-model comparison tables
-│       └── error_analysis/         # Error taxonomy and case studies
+│       ├── o4-mini/                # GPT o4-mini: parsed JSON, metrics, confusion matrices
+│       ├── claude-sonnet/          # Claude Sonnet 4.6: outputs incl. ablation
+│       ├── gemini-flash/           # Gemini 2.5 Flash: outputs
+│       ├── llama-70b/              # LLaMA 3.3 70B: outputs
+│       ├── comparison/             # Cross-model comparison tables (CSV)
+│       └── error_analysis/         # Error taxonomy, contrastive examples, case studies
 ├── analysis/
 │   ├── significance_tests.py       # McNemar's tests, gold-label correction, error taxonomy
+│   ├── descriptive_stats.py        # Descriptive statistics and figures
 │   ├── corrected_evaluation.csv    # Accuracy & macro F1 under original vs corrected gold
 │   ├── significance_results.csv    # McNemar's p-values for all comparisons
 │   ├── error_taxonomy.csv          # Error category frequencies after gold correction
@@ -71,7 +90,7 @@ Two publicly available corpora are used (not redistributed — download scripts 
 | Arabizi (WANLP 2022) | [HaifaCLG/GitHub](https://github.com/HaifaCLG/Arabizi) | 2,574 | 29,810 | Arabizi + English + French |
 | AR-EN CS (Kaggle 2021) | [Kaggle](https://www.kaggle.com/datasets/islamkaloop/arabic-english-intra-word-code-switching-corpus) | 2,507 | 30,321 | Arabic-script + English |
 
-See `data/README.md` for download instructions.
+See `data/arabic-english-cs/README.md` and `data/arabizi-wanlp/README.md` for download instructions.
 
 ## Label Scheme
 
@@ -102,15 +121,19 @@ pip install scipy
 
 ### 3. Download datasets
 
-Follow the instructions in `data/README.md` to obtain both corpora.
+```bash
+cd data/arabizi-wanlp && bash download.sh && cd ../..
+cd data/arabic-english-cs && bash download.sh && cd ../..
+```
 
 ### 4. Run experiments
 
-The experiment runner is a Google Colab notebook. To run for a specific model:
+Open `experiments/scripts/experiment_runner.ipynb` in Google Colab:
 
-1. Open the notebook in `experiments/scripts/`
-2. Set the model name, API key, and strategy in the config cell
-3. The notebook loads `experiments/data/sample_500.json`, calls the API, parses responses, and saves results to `experiments/results/{model}/`
+1. Set the model name, API key, and strategy in the config cell
+2. The notebook loads `experiments/data/sample_500.json`, calls the API, parses responses, and saves results
+
+For the ablation experiment, use `experiments/scripts/experiment_run_ablation.ipynb` with the ablation prompt.
 
 **Experimental parameters:**
 
@@ -129,10 +152,22 @@ cd experiments/scripts
 python3 evaluate.py --parsed ../results/claude-sonnet/claude-sonnet-4-6_zero_shot_lid_parsed.json --gold ../data/sample_500.json
 ```
 
-### 6. Run statistical tests and error analysis
+### 6. Compile cross-model comparison
 
 ```bash
-cd analysis
+python3 compile_results.py
+```
+
+### 7. Run error analysis
+
+```bash
+python3 error_analysis.py
+```
+
+### 8. Run statistical tests (Task 4)
+
+```bash
+cd ../../analysis
 python3 significance_tests.py
 ```
 
@@ -161,14 +196,17 @@ This produces:
 | GPT o4-mini | Few-shot | 0.940 | 0.824 |
 | LLaMA 3.3 70B | Few-shot | 0.930 | 0.779 |
 
+**Statistical significance (McNemar's test, corrected gold):**
+- Claude and GPT o4-mini are statistically tied at the top (p = 0.137)
+- LLaMA is significantly worse than all three others (p < 0.001)
+- Few-shot prompting significantly helps only GPT o4-mini (p = 0.004)
+
 **Ablation (Claude Sonnet, 10 targeted few-shot examples):**
 - Parse failures reduced from 42–46 to 21
-- Statistically significant improvement (McNemar's p < 0.01)
+- Statistically significant improvement (p < 0.01)
 - AR-LAT → EN ambiguity persists (44.4% of remaining errors)
 
 ## Citation
-
-If you use this work, please cite:
 
 ```
 Joudeh, Y., Almadani, S., Mohammed, A., & Almekhyal, A. (2026).
