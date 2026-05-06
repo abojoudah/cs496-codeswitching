@@ -1,173 +1,182 @@
-# CS496 — Code-Switching Handling in Arabic-English Tasks
+# Code-Switching Handling in Arabic-English Tasks
 
-This repository contains datasets, annotation resources, experiment scripts, and analysis outputs for a project investigating how large language models handle Arabic-English code-switching, including Arabizi (Arabic written in Latin script).
+**Benchmarking LLMs on Arabizi and Mixed Arabic-English Text**
 
-## Research Questions
+CS496 — Natural Language Processing — Kuwait University — Spring 2025/2026
 
-1. **RQ1:** To what extent can LLMs accurately perform token-level language identification on Arabic-English code-switched text, and how does performance vary across switching patterns?
-2. **RQ2:** Which LLM(s) demonstrate superior performance on Arabic-English code-switched language identification, and is there a statistically meaningful difference across models?
+## Authors
 
-## Key Findings
+| Name | Email |
+|------|-------|
+| Yousef Joudeh | s22221110617@ku.edu.kw |
+| Seyed Almadani | s2221154931@ku.edu.kw |
+| Abdulaziz Mohammed | s2212173741@ku.edu.kw |
+| Abdallah Almekhyal | s2231122390@ku.edu.kw |
 
-- **75.4% of all errors** are AR→AR-LAT: models label Arabic-script tokens as Arabizi, revealing a fundamental lack of script awareness.
-- **Few-shot prompting does not improve performance** over zero-shot for any model tested.
-- **Dataset composition drives difficulty** more than model choice: a 35-point accuracy gap between the Arabizi and AR-EN CS datasets dwarfs the 7.5-point spread between best and worst models.
-- **Gemini 2.5 Flash** leads on accuracy (0.763); **Claude Sonnet 4.6** leads on macro F1 (0.683).
+## Overview
+
+This project investigates how well large language models (LLMs) handle Arabic-English code-switching, focusing on token-level language identification (LID). We benchmark four models — GPT o4-mini, Claude Sonnet 4.6, Gemini 2.5 Flash, and LLaMA 3.3 70B — on two complementary corpora covering Arabizi (Arabic in Latin script) and Arabic-script code-switching.
+
+**Key findings:**
+- A gold-label inconsistency was discovered: 55.1% of AR-labeled tokens in the AR-EN CS corpus are actually written in Latin script, inflating reported error rates by 19 percentage points.
+- After correction, all models achieve 92–95% accuracy, with Claude Sonnet ranking first (macro F1 = 0.861).
+- Few-shot prompting does not significantly improve LID for most models (McNemar's test).
+- A targeted 10-shot ablation halves parse failures but cannot resolve intrinsic short-token ambiguity between Arabizi and English.
 
 ## Repository Structure
 
 ```
 cs496-codeswitching/
 ├── data/
-│   ├── arabizi-wanlp/              # Arabizi Dataset (WANLP 2022)
-│   │   ├── download.sh             # Download script (run this first)
-│   │   └── README.md               # Schema, fields, citation
-│   └── arabic-english-cs/          # Arabic-English CS Corpus (Kaggle 2021)
-│       ├── download.sh             # Download script (run this first)
-│       └── README.md               # Schema, fields, citation
+│   ├── README.md                   # Download instructions for datasets
+│   └── ...                         # Dataset download scripts
 ├── annotation/
-│   ├── guidelines.md               # Annotation guidelines + label definitions
-│   ├── annotation_sample.csv       # 250-sentence IAA sample
-│   ├── annotation_sample_result.csv
-│   ├── create_sample.py
-│   └── iaa_compute.py              # Fleiss Kappa computation script
+│   └── iaa_compute.py              # Inter-annotator agreement computation
+├── experiments/
+│   ├── data/
+│   │   └── sample_500.json         # Stratified 500-sentence evaluation sample
+│   ├── prompts/
+│   │   ├── zero_shot_lid.txt       # Zero-shot prompt template
+│   │   ├── few_shot_lid.txt        # Few-shot prompt template (5 examples)
+│   │   └── ablation_fewshot10_prompt.txt  # Ablation prompt (10 targeted examples)
+│   ├── scripts/
+│   │   └── evaluate.py             # Shared evaluation script
+│   └── results/
+│       ├── o4-mini/                # GPT o4-mini outputs
+│       ├── claude-sonnet/          # Claude Sonnet 4.6 outputs (incl. ablation)
+│       ├── gemini-flash/           # Gemini 2.5 Flash outputs
+│       ├── llama-70b/              # LLaMA 3.3 70B outputs
+│       ├── comparison/             # Cross-model comparison tables
+│       └── error_analysis/         # Error taxonomy and case studies
 ├── analysis/
 │   ├── significance_tests.py       # McNemar's tests, gold-label correction, error taxonomy
 │   ├── corrected_evaluation.csv    # Accuracy & macro F1 under original vs corrected gold
 │   ├── significance_results.csv    # McNemar's p-values for all comparisons
 │   ├── error_taxonomy.csv          # Error category frequencies after gold correction
 │   └── README.md                   # Documentation for analysis scripts
-│ 
-└── experiments/
-    ├── hypotheses.md               # Research questions and testable hypotheses
-    ├── prompts/
-    │   ├── zero_shot_lid.txt       # Zero-shot prompt template
-    │   └── few_shot_lid.txt        # Few-shot prompt template (5 examples)
-    ├── data/
-    │   ├── sample_500.json         # Stratified evaluation sample (seed=42)
-    |   ├── arabizi_eval_sample_seed42.json # 250 Arabizi sentences extracted separately
-    |   ├── ar_en_cs_eval_sample_seed42.json #  250 AR-EN CS sentences extracted separately
-    ├── scripts/
-    │   ├── experiment_runner.ipynb      # Model-agnostic API runner (Colab)
-    │   ├── evaluate.py                  # Evaluation metrics script
-    │   ├── compile_results.py           # Phase 4: comparison table builder
-    │   ├── error_analysis.py            # Phase 5: error taxonomy builder
-    │   ├── select_arabizi_eval_sample.py    # Sample 250 Arabizi sentences
-    │   ├── select_ar_en_cs_eval_sample.py   # Sample 250 AR-EN CS sentences
-    │   └── merge_samples               # Combine both samples into sample_500.json
-    └── results/
-        ├── o4-mini/                # GPT o4-mini outputs
-        ├── claude-sonnet/          # Claude Sonnet 4.6 outputs
-        ├── gemini-flash/           # Gemini 2.5 Flash outputs
-        ├── llama-70b/              # LLaMA 3.3 70B outputs
-        ├── comparison/             # Cross-model comparison tables
-        └── error_analysis/         # Error taxonomy and case studies
+├── paper/
+│   └── Code_Switching_Final.pdf    # Final paper (IEEE 2-column format)
+├── slides/
+│   └── ...                         # Presentation slides (added after presentation)
+├── .gitignore
+└── README.md                       # This file
 ```
 
 ## Datasets
 
-| Dataset | Source | Sentences | Tokens | Script |
-|---|---|---|---|---|
-| Arabizi (WANLP 2022) | GitHub: HaifaCLG/Arabizi | 2,574 | 29,810 | `data/arabizi-wanlp/download.sh` |
-| Arabic-English CS Corpus | Kaggle: islamkaloop | 2,507 | 30,321 | `data/arabic-english-cs/download.sh` |
-| **Combined** | | **5,081** | **60,131** | |
+Two publicly available corpora are used (not redistributed — download scripts provided):
 
-**Important:** Raw dataset files are not committed to this repository. Run the download scripts to obtain them locally.
+| Dataset | Source | Sentences | Tokens | Focus |
+|---------|--------|-----------|--------|-------|
+| Arabizi (WANLP 2022) | [HaifaCLG/GitHub](https://github.com/HaifaCLG/Arabizi) | 2,574 | 29,810 | Arabizi + English + French |
+| AR-EN CS (Kaggle 2021) | [Kaggle](https://www.kaggle.com/datasets/islamkaloop/arabic-english-intra-word-code-switching-corpus) | 2,507 | 30,321 | Arabic-script + English |
 
-## Unified Label Scheme
+See `data/README.md` for download instructions.
+
+## Label Scheme
+
+A unified five-label annotation scheme:
 
 | Label | Description | Example |
-|---|---|---|
-| AR | Arabic in Arabic script | مرحبا، كيف |
+|-------|-------------|---------|
+| AR | Arabic in Arabic script | مرحبا |
 | EN | English in Latin script | hello, working |
 | AR-LAT | Arabizi: Arabic in Latin script | marhaba, 7abibi |
 | OTHER | Punctuation, digits, symbols | . , ! @ # |
-| OL | Other language (e.g. French) | Oui, vraiment |
+| OL | Other language (e.g., French) | Oui, vraiment |
 
-## Models Evaluated
+## How to Reproduce
 
-| Model | Provider | API |
-|---|---|---|
-| GPT o4-mini | OpenAI | OpenAI API |
-| Claude Sonnet 4.6 | Anthropic | Anthropic API |
-| Gemini 2.5 Flash | Google | Google AI API |
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/abojoudah/cs496-codeswitching.git
+cd cs496-codeswitching
+```
+
+### 2. Install dependencies
+
+```bash
+pip install scipy
+```
+
+### 3. Download datasets
+
+Follow the instructions in `data/README.md` to obtain both corpora.
+
+### 4. Run experiments
+
+The experiment runner is a Google Colab notebook. To run for a specific model:
+
+1. Open the notebook in `experiments/scripts/`
+2. Set the model name, API key, and strategy in the config cell
+3. The notebook loads `experiments/data/sample_500.json`, calls the API, parses responses, and saves results to `experiments/results/{model}/`
+
+**Experimental parameters:**
+
+| Parameter | Value |
+|-----------|-------|
+| Temperature | 0.0 |
+| Max tokens | 2,048 |
+| Batch size | 5 sentences per API call |
+| Random seed | 42 |
+| Sample size | 500 (250 per dataset) |
+
+### 5. Run evaluation
+
+```bash
+cd experiments/scripts
+python3 evaluate.py --parsed ../results/claude-sonnet/claude-sonnet-4-6_zero_shot_lid_parsed.json --gold ../data/sample_500.json
+```
+
+### 6. Run statistical tests and error analysis
+
+```bash
+cd analysis
+python3 significance_tests.py
+```
+
+This produces:
+- `corrected_evaluation.csv` — metrics under original and corrected gold labels
+- `significance_results.csv` — McNemar's test p-values
+- `error_taxonomy.csv` — error categories after gold-label correction
+
+## Models Tested
+
+| Model | Provider | Access |
+|-------|----------|--------|
+| GPT o4-mini | OpenAI | API |
+| Claude Sonnet 4.6 | Anthropic | API |
+| Gemini 2.5 Flash | Google | API |
 | LLaMA 3.3 70B Instruct | Meta (open-source) | Together AI API |
 
-All models were run with temperature=0.0, max_tokens=2048, on a 500-sentence stratified sample (seed=42).
+## Results Summary
 
-## Setup
+**Overall performance (corrected gold labels):**
 
-```bash
-import os
+| Model | Best Strategy | Accuracy | Macro F1 |
+|-------|---------------|----------|----------|
+| Claude Sonnet 4.6 | Few-shot | 0.944 | 0.861 |
+| Gemini 2.5 Flash | Zero-shot | 0.942 | 0.850 |
+| GPT o4-mini | Few-shot | 0.940 | 0.824 |
+| LLaMA 3.3 70B | Few-shot | 0.930 | 0.779 |
 
-!git clone https://github.com/abojoudah/cs496-codeswitching.git
-%cd cs496-codeswitching
-
-# Download datasets
-!bash data/arabizi-wanlp/download.sh
-!bash data/arabic-english-cs/download.sh
-
-# Install dependencies
-!pip install pandas numpy scikit-learn matplotlib seaborn nltk
-```
-
-## Running Experiments
-
-### 1. Experiment Runner
-
-Open `experiments/scripts/experiment_runner.ipynb` in Google Colab. Set your model name and API key in the config cell at the top, then run all cells. The notebook loads the 500-sentence sample, calls the API, and saves raw + parsed outputs to `experiments/results/`.
-
-### 2. Evaluation
-
-Run the evaluation script on any parsed output:
-
-```bash
-python3 experiments/scripts/evaluate.py \
-  --parsed experiments/results/<model>/<model>_<strategy>_lid_parsed.json \
-  --sample experiments/data/sample_500.json \
-  --out experiments/results/<model>/ \
-  --save-json
-```
-
-This produces per-model CSV files (overall metrics, per-label breakdown, confusion matrix) and an optional JSON metrics file.
-
-### 3. Compile Comparison Tables
-
-After all models have been evaluated:
-
-```bash
-python3 experiments/scripts/compile_results.py \
-  --results-dir experiments/results \
-  --sample experiments/data/sample_500.json
-```
-
-Outputs three comparison tables to `experiments/results/comparison/`.
-
-### 4. Error Analysis
-
-```bash
-python3 experiments/scripts/error_analysis.py \
-  --results-dir experiments/results \
-  --sample experiments/data/sample_500.json \
-  --out experiments/results/error_analysis
-```
-
-Outputs error taxonomy, contrastive examples, and representative error cases.
+**Ablation (Claude Sonnet, 10 targeted few-shot examples):**
+- Parse failures reduced from 42–46 to 21
+- Statistically significant improvement (McNemar's p < 0.01)
+- AR-LAT → EN ambiguity persists (44.4% of remaining errors)
 
 ## Citation
 
-```bibtex
-@inproceedings{shehadi-wintner-2022-identifying,
-  title     = "Identifying Code-switching in {A}rabizi",
-  author    = "Shehadi, Safaa and Wintner, Shuly",
-  booktitle = "Proceedings of the Seventh Arabic NLP Workshop (WANLP)",
-  year      = "2022",
-  pages     = "194--204"
-}
+If you use this work, please cite:
+
+```
+Joudeh, Y., Almadani, S., Mohammed, A., & Almekhyal, A. (2026).
+Handling Code-Switching in Arabic-English Tasks: Benchmarking LLMs
+on Arabizi and Mixed Arabic-English Text. CS496 Course Project,
+Kuwait University.
 ```
 
-## License and Ethics
+## License
 
-- No PII is stored or committed to this repository.
-- Tweet IDs only are retained for Twitter-sourced data (Twitter/X ToS compliant).
-- All data is used for academic research only.
+This project is for academic purposes (CS496 course project). Datasets are subject to their original licenses.
