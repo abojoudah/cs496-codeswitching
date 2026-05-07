@@ -76,7 +76,7 @@ cs496-codeswitching/
 ├── paper/
 │   └── Code_Switching_Final.pdf    # Final paper (IEEE 2-column format)
 ├── slides/
-│   └── ...                         # Presentation slides (added after presentation)
+│   └── Code_Switching_Presentation                 # Presentation slides (added after presentation)
 ├── .gitignore
 └── README.md                       # This file
 ```
